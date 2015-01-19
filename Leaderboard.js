@@ -1,18 +1,19 @@
 PlayerList = new Meteor.Collection("player");
 
 if (Meteor.isClient) {
-  
-  Template.leaderboard.player = function(){
-    return PlayerList.find({}, {sort: {score: -1, name: 1}});
-  };
-
-  Template.leaderboard.selected = function(){
-    var selectedPlayer = Session.get('selectedPlayer');
-    var playerId = this._id;
-    if(selectedPlayer == playerId){
-    return 'selected';
+    
+  Template.leaderboard.helpers({
+    player: function(){
+      return PlayerList.find({ createdBy: Meteor.userId()}, {sort: {score: -1, name: 1}});
+    },
+    selected: function(){
+      var selectedPlayer = Session.get('selectedPlayer');
+      var playerId = this._id;
+      if(selectedPlayer == playerId){
+        return 'selected';
+      }
     }
-  };
+  });
 
   Template.leaderboard.events({
     'click li.player': function(e, t){
@@ -42,7 +43,7 @@ if (Meteor.isClient) {
     'click #create' : function(e,t){
       var name = t.find("#Pname");
       var score = t.find("#Pscore");
-      PlayerList.insert({name: name.value, score: parseInt(score.value) });
+      PlayerList.insert({name: name.value, score: parseInt(score.value), createdBy: Meteor.userId() });
       name.value = "";
       score.value = "";
     }
