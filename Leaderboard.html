@@ -5,6 +5,7 @@
 <body>
 	<h1>Leaderboard</h1> 
 	{{> leaderboard }}
+	{{> newplayer }}
 </body>
 
 
@@ -14,4 +15,9 @@
 	  	<li>{{ name }} : {{ score }}</li>
 	  {{/each }}
 	</ul>
+</template>
+<template name="newplayer">
+	Name:<input type="text" value= "" id="Pname">
+	Score:<input type="text" value= "" id="Pscore">
+	<button id="create">Create Player</button>
 </template>
