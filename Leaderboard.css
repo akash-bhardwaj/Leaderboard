@@ -1,1 +1,10 @@
-/* CSS declarations go here */
+body{
+	font-family: "Helvetica";
+}
+.selected {
+	background: #f2f3f4;
+}
+span {
+	font-size: 14px;
+	color: red;
+}

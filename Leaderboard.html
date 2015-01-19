@@ -12,12 +12,13 @@
 <template name="leaderboard">
   <ul>
 	  {{#each player }}
-	  	<li>{{ name }} : {{ score }}</li>
+	  	<li class="player {{selected}}">{{ name }} : {{ score }} &nbsp;<span class="delete">Delete</span></li>
 	  {{/each }}
 	</ul>
+	<button id="addScore">Add 5 Points</button><br />
 </template>
 <template name="newplayer">
 	Name:<input type="text" value= "" id="Pname">
-	Score:<input type="text" value= "" id="Pscore">
+	Score:<input type="number" value= "" id="Pscore">
 	<button id="create">Create Player</button>
 </template>
